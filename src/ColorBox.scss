@@ -16,7 +16,6 @@
 	height: 50%;
 }
 
-.copy-button,
 .backbtn {
 	width: 100px;
 	height: 30px;
@@ -65,17 +64,6 @@
 	color: grey;
 }
 
-.see-more {
-	background: rgba(255, 255, 255, 0.3);
-	position: absolute;
-	color: white;
-	right: 0;
-	bottom: 0;
-	width: 60px;
-	height: 30px;
-	text-align: center;
-	line-height: 30px;
-}
 .copy-overlay {
 	opacity: 0;
 	transition: 0.6s transform ease-in-out;
