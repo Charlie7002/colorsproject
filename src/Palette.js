@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import seedColors from "./seedColors";
 import ColorBox from "./ColorBox";
-import Slider from "rc-slider";
 import NavBar from "./NavBar";
 import "./Palette.scss";
 
@@ -22,10 +20,16 @@ class Palette extends Component {
 		this.setState({ format: val });
 	};
 	render() {
-		const { colors, paletteName, emoji } = this.props.palette;
+		const { colors, paletteName, emoji, id } = this.props.palette;
 		const { level, format } = this.state;
 		const colorBoxes = colors[level].map((c) => (
-			<ColorBox background={c[format]} name={c.name} key={c.id} />
+			<ColorBox
+				background={c[format]}
+				name={c.name}
+				key={c.id}
+				colorId={c.id}
+				paletteId={id}
+			/>
 		));
 
 		return (
