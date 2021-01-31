@@ -3,29 +3,7 @@ import { withStyles } from "@material-ui/styles";
 import ColorBox from "./ColorBox";
 import NavBar from "./NavBar";
 import PaletteFooter from "./PaletteFooter";
-import "./Palette.scss";
-
-const styles = {
-	Palette: {
-		height: "98vh",
-		display: "flex",
-		flexDirection: "column",
-	},
-	PaletteColors: {
-		height: "90%",
-	},
-	PaletteEmoji: {
-		fontSize: "1rem",
-		margin: "0 1rem",
-	},
-	PaletteFooter: {
-		backgroundColor: "white",
-		height: "5vh",
-		display: "flex",
-		justifyContent: "flex-end",
-		"align-items": "center",
-	},
-};
+import styles from "./styles/PaletteStyles";
 
 class Palette extends Component {
 	constructor(props) {
