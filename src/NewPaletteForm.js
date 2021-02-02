@@ -14,6 +14,7 @@ import Button from "@material-ui/core/Button";
 import { ChromePicker } from "react-color";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import DraggColorBox from "./DraggColorBox";
+import { colors } from "@material-ui/core";
 
 const drawerWidth = 400;
 
@@ -82,7 +83,8 @@ class NewPaletteForm extends Component {
 			open: true,
 			currentColor: "purple",
 			colors: [],
-			newName: "",
+			newNameColor: "",
+			newNamePalette: "",
 		};
 	}
 
@@ -98,6 +100,12 @@ class NewPaletteForm extends Component {
 				({ color }) => color !== this.state.currentColor
 			)
 		);
+		ValidatorForm.addValidationRule("isPaletteUnique", (value) =>
+			this.props.palettes.every(
+				({ paletteName }) =>
+					paletteName.toLowerCase() !== value.toLowerCase()
+			)
+		);
 	}
 
 	handleDrawerOpen = () => {
@@ -111,26 +119,32 @@ class NewPaletteForm extends Component {
 		this.setState({ currentColor: newColor.hex });
 	};
 
+	removeColor = (colorName) => {
+		this.setState({
+			colors: this.state.colors.filter((color) => color.name !== colorName),
+		});
+	};
+
 	addNewColor = () => {
 		console.log(this.state.colors);
 		const newColor = {
 			color: this.state.currentColor,
-			name: this.state.newName,
+			name: this.state.newNameColor,
 		};
 
 		this.setState({
 			colors: [...this.state.colors, newColor],
-			newName: "", //clear input
+			newNameColor: "", //clear input
 		});
 	};
 	handleChange = (e) => {
 		this.setState({
-			newName: e.currentTarget.value,
+			[e.target.name]: e.target.value,
 		});
 	};
 
 	handleSubmit = () => {
-		let newName = "palette test";
+		let newName = this.state.newNamePalette;
 		const newPalette = {
 			colors: this.state.colors,
 			emoji: "",
@@ -170,13 +184,22 @@ class NewPaletteForm extends Component {
 						<Typography variant="h6" color="inherit" noWrap>
 							Persistent drawer
 						</Typography>
-						<Button
-							variant="contained"
-							color="primary"
-							onClick={this.handleSubmit}
-						>
-							Save Palette
-						</Button>
+						<ValidatorForm onSubmit={this.handleSubmit}>
+							<TextValidator
+								label="Palette Name"
+								value={this.state.newNamePalette}
+								onChange={this.handleChange}
+								name="newNamePalette"
+								validators={["required", "isPaletteUnique"]}
+								errorMessages={[
+									"Enter a palette name",
+									"This palette name is already exist",
+								]}
+							/>
+							<Button variant="contained" color="primary" type="submit">
+								Save Palette
+							</Button>
+						</ValidatorForm>
 					</Toolbar>
 				</AppBar>
 				<Drawer
@@ -209,7 +232,8 @@ class NewPaletteForm extends Component {
 					/>
 					<ValidatorForm onSubmit={this.addNewColor}>
 						<TextValidator
-							value={this.state.newName}
+							value={this.state.newNameColor}
+							name="newNameColor"
 							onChange={this.handleChange}
 							validators={[
 								"required",
@@ -241,7 +265,13 @@ class NewPaletteForm extends Component {
 					<div className={classes.drawerHeader} />
 
 					{this.state.colors.map((color) => (
-						<DraggColorBox color={color.color} name={color.name} />
+						<DraggColorBox
+							color={color.color}
+							name={color.name}
+							key={color.name}
+							id={color.name}
+							handleClick={() => this.removeColor(color.name)}
+						/>
 					))}
 				</main>
 			</div>
