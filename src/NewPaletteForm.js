@@ -13,8 +13,9 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
 import { ChromePicker } from "react-color";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-import DraggColorBox from "./DraggColorBox";
-import { colors } from "@material-ui/core";
+
+import { arrayMove } from "react-sortable-hoc";
+import DraggableColorList from "./DraggableColorList";
 
 const drawerWidth = 400;
 
@@ -82,7 +83,27 @@ class NewPaletteForm extends Component {
 		this.state = {
 			open: true,
 			currentColor: "purple",
-			colors: [],
+			colors: [
+				{ name: "Beekeeper", color: "#f6e58d" },
+				{ name: "SpicedNectarine", color: "#ffbe76" },
+				{ name: "PinkGlamour", color: "#ff7979" },
+				{ name: "JuneBud", color: "#badc58" },
+				{ name: "CoastalBreeze", color: "#dff9fb" },
+				{ name: "Turbo", color: "#f9ca24" },
+				{ name: "QuinceJelly", color: "#f0932b" },
+				{ name: "CarminePink", color: "#eb4d4b" },
+				{ name: "PureApple", color: "#6ab04c" },
+				{ name: "HintOfIcePack", color: "#c7ecee" },
+				{ name: "MiddleBlue", color: "#7ed6df" },
+				{ name: "Heliotrope", color: "#e056fd" },
+				{ name: "ExodusFruit", color: "#686de0" },
+				{ name: "DeepKoamaru", color: "#30336b" },
+				{ name: "SoaringEagle", color: "#95afc0" },
+				{ name: "GreenlandGreen", color: "#22a6b3" },
+				{ name: "SteelPink", color: "#be2edd" },
+				{ name: "Blurple", color: "#4834d4" },
+				{ name: "DeepCove", color: "#130f40" },
+			],
 			newNameColor: "",
 			newNamePalette: "",
 		};
@@ -153,6 +174,12 @@ class NewPaletteForm extends Component {
 		};
 		this.props.savePalette(newPalette);
 		this.props.history.push("/");
+	};
+
+	onSortEnd = ({ oldIndex, newIndex }) => {
+		this.setState(({ colors }) => ({
+			colors: arrayMove(colors, oldIndex, newIndex),
+		}));
 	};
 
 	render() {
@@ -263,16 +290,12 @@ class NewPaletteForm extends Component {
 					})}
 				>
 					<div className={classes.drawerHeader} />
-
-					{this.state.colors.map((color) => (
-						<DraggColorBox
-							color={color.color}
-							name={color.name}
-							key={color.name}
-							id={color.name}
-							handleClick={() => this.removeColor(color.name)}
-						/>
-					))}
+					<DraggableColorList
+						colors={this.state.colors}
+						removeColor={this.removeColor}
+						axis="xy"
+						onSortEnd={this.onSortEnd}
+					/>
 				</main>
 			</div>
 		);
