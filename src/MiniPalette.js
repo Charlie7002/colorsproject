@@ -1,25 +1,42 @@
 import React from "react";
 import { withStyles } from "@material-ui/styles";
+import DeleteIcon from "@material-ui/icons/Delete";
 import styles from "./styles/MiniPaletteStyles";
+import { StopSharp } from "@material-ui/icons";
 
-function MiniPalette(props) {
-	const { classes, paletteName, emoji, colors, handleClick } = props;
-	const miniColorBoxes = colors.map((c) => (
-		<div
-			key={c.name}
-			className={classes.miniColor}
-			style={{ background: c.color }}
-		></div>
-	));
-	return (
-		<div className={classes.root} onClick={handleClick}>
-			<div className={classes.colors}>{miniColorBoxes}</div>
-			<h5 className={classes.title}>
-				{paletteName}
-				<span className={emoji}>{emoji}</span>
-			</h5>
-		</div>
-	);
+class MiniPalette extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+	deletePalette = (e) => {
+		e.stopPropagation();
+		this.props.handleDelete(this.props.id);
+	};
+	render() {
+		const { classes, paletteName, emoji, colors, handleClick } = this.props;
+		const miniColorBoxes = colors.map((c) => (
+			<div
+				key={c.name}
+				className={classes.miniColor}
+				style={{ background: c.color }}
+			></div>
+		));
+		return (
+			<div className={classes.root} onClick={handleClick}>
+				<DeleteIcon
+					onClick={this.deletePalette}
+					className={classes.deleteIcon}
+					style={{ transition: "all ease .3s" }}
+				/>
+
+				<div className={classes.colors}>{miniColorBoxes}</div>
+				<h5 className={classes.title}>
+					{paletteName}
+					<span className={emoji}>{emoji}</span>
+				</h5>
+			</div>
+		);
+	}
 }
 
 export default withStyles(styles)(MiniPalette);
