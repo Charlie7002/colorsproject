@@ -38,7 +38,7 @@ export default {
 		display: "inline-block",
 		margin: "auto",
 		position: "relative",
-		marginBottom: "-3.5px",
+		marginBottom: "-5.5px",
 	},
 
 	delete: {},

@@ -9,7 +9,7 @@ const styles = {
 		position: "relative",
 		cursor: "pointer",
 		textTransform: "uppercase",
-		marginBottom: "-4px",
+		marginBottom: "-6px",
 		"&:hover svg": {
 			color: "white",
 			transform: "scale(1.5)",

@@ -51,7 +51,7 @@ export default {
 		position: "relative",
 		cursor: "pointer",
 		textTransform: "uppercase",
-		marginBottom: "-4px",
+		marginBottom: "-6px",
 
 		"&:hover button": {
 			opacity: 1,
