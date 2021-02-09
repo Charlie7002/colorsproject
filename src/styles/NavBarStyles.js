@@ -1,3 +1,4 @@
+import sizes from "./sizes";
 export default {
 	slider: {
 		width: "340px",
@@ -20,6 +21,9 @@ export default {
 			marginLeft: "-7px !important",
 			marginTop: "-3px !important",
 		},
+		[sizes.down("xs")]: {
+			width: "160px",
+		},
 	},
 
 	NavBar: {
@@ -40,6 +44,9 @@ export default {
 		"& a": {
 			textDecoration: "none",
 			color: "black",
+		},
+		[sizes.down("xs")]: {
+			display: "none",
 		},
 	},
 

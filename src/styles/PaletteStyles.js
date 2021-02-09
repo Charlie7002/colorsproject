@@ -1,3 +1,4 @@
+import sizes from "./sizes";
 export default {
 	Palette: {
 		height: "98vh",
@@ -37,6 +38,18 @@ export default {
 			border: "none",
 			textDecoration: "none",
 			textTransform: "uppercase",
+		},
+		[sizes.down("lg")]: {
+			width: "50%",
+			height: "33.33%",
+		},
+		[sizes.down("md")]: {
+			width: "50%",
+			height: "20%",
+		},
+		[sizes.down("xs")]: {
+			width: "100%",
+			height: "10%",
 		},
 	},
 };

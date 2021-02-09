@@ -1,4 +1,5 @@
 import chroma from "chroma-js";
+import sizes from "./sizes";
 
 export default {
 	copyText: {
@@ -56,6 +57,19 @@ export default {
 			opacity: 1,
 			transition: ".3s",
 		},
+		[sizes.down("lg")]: {
+			width: "25%",
+			height: (props) => (props.showFullPalette ? "20%" : "33.33%"),
+		},
+		[sizes.down("md")]: {
+			width: "50%",
+			height: (props) => (props.showFullPalette ? "10%" : "20%"),
+		},
+
+		[sizes.down("xs")]: {
+			width: "100%",
+			height: (props) => (props.showFullPalette ? "5%" : "10%"),
+		},
 	},
 	boxContent: {
 		position: "absolute",
@@ -103,6 +117,9 @@ export default {
 			textAlign: "center",
 			width: "100%",
 			padding: 0,
+			[sizes.down("xs")]: {
+				fontSize: "4rem",
+			},
 		},
 		"& p": {
 			fontSize: "2rem",
