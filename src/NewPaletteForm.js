@@ -129,7 +129,7 @@ class NewPaletteForm extends Component {
 						<ColorPickerForm
 							paletteFull={paletteFull}
 							addNewColor={this.addNewColor}
-							colors={this.state.colors}
+							colors={colors}
 						/>
 					</div>
 				</Drawer>

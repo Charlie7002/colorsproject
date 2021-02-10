@@ -44,8 +44,8 @@ export default {
 	delete: {},
 	deleteIcon: {
 		color: "white",
-		height: "20px",
-		width: "20px",
+		height: "35px",
+		width: "35px",
 		position: "absolute",
 		top: 0,
 		right: 0,

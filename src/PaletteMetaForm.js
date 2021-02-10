@@ -57,7 +57,7 @@ class PaletteMetaForm extends React.Component {
 
 	render() {
 		const { newNamePalette, stage } = this.state;
-		const { handleSubmit, hideForm } = this.props;
+		const { hideForm } = this.props;
 		return (
 			<>
 				<Dialog open={stage === "emoji"} onClose={hideForm}>

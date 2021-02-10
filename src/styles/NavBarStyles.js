@@ -21,6 +21,9 @@ export default {
 			marginLeft: "-7px !important",
 			marginTop: "-3px !important",
 		},
+		[sizes.down("sm")]: {
+			width: "260px",
+		},
 		[sizes.down("xs")]: {
 			width: "160px",
 		},
