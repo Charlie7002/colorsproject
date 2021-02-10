@@ -32,6 +32,7 @@ class PaletteMetaForm extends React.Component {
 
 	handleClose = () => {
 		this.setState({ open: false });
+		this.props.hideForm();
 	};
 
 	handleChange = (e) => {
@@ -73,7 +74,7 @@ class PaletteMetaForm extends React.Component {
 					open={stage === "form"}
 					onClose={this.handleClose}
 					aria-labelledby="form-dialog-title"
-					onClose={hideForm}
+					// onClose={hideForm}
 				>
 					<DialogTitle id="form-dialog-title">
 						Choose a palette Name

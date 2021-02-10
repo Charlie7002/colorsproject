@@ -13,8 +13,6 @@ import PaletteFormNav from "./PaletteFormNav";
 import ColorPickerForm from "./ColorPickerForm";
 import { styles } from "./styles/NewPaletteFormStyle";
 
-const drawerWidth = 400;
-
 class NewPaletteForm extends Component {
 	static defaultProps = {
 		maxColor: 20,
