@@ -112,6 +112,17 @@ class App extends Component {
 										</Page>
 									)}
 								/>
+								<Route
+									render={(routeProps) => (
+										<Page>
+											<PaletteList
+												palettos={this.state.palettes}
+												{...routeProps}
+												deletePalette={this.deletePalette}
+											/>
+										</Page>
+									)}
+								/>
 							</Switch>
 						</CSSTransition>
 					</TransitionGroup>

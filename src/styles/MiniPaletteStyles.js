@@ -38,14 +38,14 @@ export default {
 		display: "inline-block",
 		margin: "auto",
 		position: "relative",
-		marginBottom: "-5.5px",
+		marginBottom: "-4px",
 	},
 
 	delete: {},
 	deleteIcon: {
 		color: "white",
-		height: "35px",
-		width: "35px",
+		height: "25px",
+		width: "25px",
 		position: "absolute",
 		top: 0,
 		right: 0,
